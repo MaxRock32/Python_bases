@@ -6,12 +6,24 @@
 # квадратами элементов исходного списка
 # [0, 1, 2, 3] --> [0, 1, 4, 9]
 
+import random
+
+lst_a = [random.randint(1, 50) for _ in range(10)]
+lst_b = [el ** 2 for el in lst_a]
+print(f"{lst_a}\n{lst_b}")
+
 
 
 # Задание-2:
 # Даны два списка фруктов.
 # Получить список фруктов, присутствующих в обоих исходных списках.
 
+import random
+
+lst_a = ["Ананас", "Апельсин", "Банан", "Гранат", "Виноград", "Яблоко", "Киви", "Манго"]
+lst_b = ["Ананас", "Дыня", "Мандарин", "Яблоко", "Арбуз", "Манго"]
+lst_c = [el for el in lst_a if el in lst_b]
+print(lst_c)
 
 
 # Задание-3:
@@ -21,6 +33,11 @@
 # + Элемент неотрицательный
 # + Элемент не кратен 3
 
+import random
+
+lst_a = [random.randint(-10, 10) for _ in range(10)]
+lst_b = [el for el in lst_a if  el % 2 == 0 and el > 0 and el % 3 != 0  ]
+print(f"{lst_a}\n{lst_b}")
 
 
 
