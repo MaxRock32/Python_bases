@@ -15,6 +15,42 @@
 # и импортированные в данный файл из easy.py
 # ИСПОЛЬЗОВАТЬ МОДУЛЬ OS и SHUTIL
 
+import os
+import hw05_easy
+
+answer = ''
+while answer != 'q':
+    print('1 - перейти в папку')
+    print('2 - просмотреть содержимое текущей папки')
+    print('3 - удалить папку')
+    print('4 - создать папку')
+    otvet = int(input('ваш ответ: '))
+
+    if otvet == 1:
+        folder_name = input('введите название папки: ')
+        if not folder_name:
+            folder_name = input('введите название папки: ')
+        dir_path = os.path.join(os.getcwd(), folder_name)
+        print('успешшно перешел в ', dir_path)
+        exit()
+
+    if otvet == 2:
+        print('содержимое текущей папки: ', os.listdir())
+        exit()
+
+    if otvet == 3:
+        folder_name = input('введите название папки: ')
+        if not folder_name:
+            folder_name = input('введите название папки: ')
+        hw05_easy.remove_dir(folder_name)
+        exit()
+
+    if otvet == 4:
+        folder_name = input('введите название папки: ')
+        if not folder_name:
+            folder_name = input('введите название папки: ')
+        hw05_easy.make_dir(folder_name)
+        exit() 
 
 
 
