@@ -9,7 +9,19 @@
 класса метод __dict__ и проверить какой будет результат применения этого метода.
 А комментариях к заданию написать тип результата на русском языке.
 '''
+class Worker:
+    def __init__(self, name, surname, patronymic, total):
+        self.name = name
+        self.surname = surname
+        self.patronymic = patronymic
+        self.total = total
+        self._income = {"salary": self.total.split("+")[0], "bonus": self.total.split("+")[1]}
 
+
+worker1 = Worker("Иван", "Иванович", "Иванов", "34500+4500")
+worker2 = Worker("Владимир", "Владимирович", "Кузнецов", "25000+7200")
+
+print(worker1.__dict__)
 
 '''
 Задача-2: Продолжить работу над задачей 1. Создать на основе класса Worker класс
@@ -19,7 +31,19 @@ Position (реализовать наследование). Добавить к�
 Реализовать обращение к этому атриубуту, как к свойству.
 Проверить работу всей структуры на реальных данных, вывести результаты.
 '''
+class Position(Worker):
+    def __init__(self, name, surname, patronymic, total):
+        Worker.__init__(self, name, surname, patronymic, total)
+        self.procent = float(self._income["bonus"]) / (float(self._income["salary"]) + float(self._income["bonus"]))
 
+    @property
+    def salary(self):
+        total = float(self._income["salary"]) + float(self._income["bonus"])
+        return total * (1 - self.procent)
+
+
+worker3 = Position("Николай", "Александрович", "Смирнов", "34800+6700")
+print(worker3.salary)
 
 '''
 Задача-3: Продолжить работу над задачей 2.  Реализовать полиморфизм
@@ -28,5 +52,21 @@ Position (реализовать наследование). Добавить к�
 Проверить работу всей структуры на реальных данных, вывести результаты.
 '''
 
+class Worker2(Worker):
+    def __init__(self, name, surname, patronymic, age, total):
+        Worker.__init__(self, name, surname, patronymic, total)
+        self.age = age
 
+    @property
+    def fio(self):
+        return "Full name and age: " + self.name + " " + self.surname + " " + self.patronymic + " " + str(self.age)
+
+    @property
+    def summa(self):
+        return float(self._income["salary"]) + float(self._income["bonus"])
+
+
+worker4 = Worker2("Пётр", "Иванович", "Иванов", 43, "45000+5000")
+print(worker4.fio)
+print(worker4.summa)
 
